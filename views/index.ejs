@@ -1,0 +1,52 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Matching</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <h1>Profile Matching</h1>
+
+    <h2>Add New Student</h2>
+    <form action="/add" method="post">
+      <input type="text" name="name" placeholder="Name" required />
+      <input type="number" name="academicScore" placeholder="Academic Score" required />
+      <input type="number" name="extracurricularScore" placeholder="Extracurricular Score" required />
+      <input type="number" name="personalQualityScore" placeholder="Personal Quality Score" required />
+      <button type="submit">Add Student</button>
+    </form>
+
+    <h2>Upload Excel File</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".xlsx, .xls" required />
+      <button type="submit">Upload</button>
+    </form>
+
+    <h2>Students List</h2>
+    <% if (students.length > 0) { %>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Academic Score</th>
+          <th>Extracurricular Score</th>
+          <th>Personal Quality Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% students.forEach(student => { %>
+        <tr>
+          <td><%= student.name %></td>
+          <td><%= student.academicScore %></td>
+          <td><%= student.extracurricularScore %></td>
+          <td><%= student.personalQualityScore %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <% } else { %>
+    <p>No students found</p>
+    <% } %>
+  </body>
+</html>
