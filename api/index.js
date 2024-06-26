@@ -11,10 +11,10 @@ const server = createServer((req, res) => {
 
 // Your MySQL configuration
 const db = mysql.createConnection({
-  host: "your-mysql-host",
-  user: "your-mysql-user",
+  host: "localhost",
+  user: "root",
   password: "your-mysql-password",
-  database: "your-database-name",
+  database: "maberpres",
 });
 
 db.connect((err) => {
