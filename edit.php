@@ -1,6 +1,7 @@
 <?php
 include 'includes/db.php';
 
+
 // Ambil id dari URL
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -20,8 +21,10 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
 </head>
 <body class="bg-gray-100">
-    <div class="container mx-auto p-4">
-        <h1 class="text-4xl font-bold mb-4">Edit Data Mahasiswa</h1>
+<?php include 'includes/header.php'; ?>
+
+<div class="max-w-2xl mx-auto ">
+        <h1 class="text-4xl font-bold mb-4">Mengedit Data Mahasiswa</h1>
 
         <form class="space-y-4 bg-white p-6 rounded shadow-md" action="update.php" method="POST">
             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
@@ -35,7 +38,7 @@ if (isset($_GET['id'])) {
                 <input type="text" id="nim" name="nim" value="<?php echo htmlspecialchars($row['nim']); ?>" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
             </div>
             <div>
-                <label for="kti" class="block text-sm font-medium text-gray-700">KTI</label>
+                <label for="kti" class="block text-sm font-medium text-gray-700">Karya Tulis Ilmiah</label>
                 <select id="kti" name="kti" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                     <option value="5" <?php if ($row['kti'] == 5) echo 'selected'; ?>>Lolos Tingkat Nasional</option>
                     <option value="4" <?php if ($row['kti'] == 4) echo 'selected'; ?>>Lolos Tingkat Provinsi</option>
@@ -49,7 +52,7 @@ if (isset($_GET['id'])) {
                 <input type="number" id="ipk" name="ipk" step="0.01" value="<?php echo htmlspecialchars($row['ipk']); ?>" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
             </div>
             <div>
-                <label for="bi" class="block text-sm font-medium text-gray-700">BI</label>
+                <label for="bi" class="block text-sm font-medium text-gray-700">Bahasa Inggris</label>
                 <select id="bi" name="bi" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                     <option value="5" <?php if ($row['bi'] == 5) echo 'selected'; ?>>677 ≤ TOEFL ≥ 501</option>
                     <option value="4" <?php if ($row['bi'] == 4) echo 'selected'; ?>>500 ≤ TOEFL ≥ 401</option>
@@ -69,17 +72,17 @@ if (isset($_GET['id'])) {
                 </select>
             </div>
             <div>
-                <label for="po" class="block text-sm font-medium text-gray-700">PO</label>
+                <label for="po" class="block text-sm font-medium text-gray-700">Pengalaman Organisasi</label>
                 <select id="po" name="po" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
-                    <option value="5" <?php if ($row['po'] == 5) echo 'selected'; ?>>Bem pusat</option>
-                    <option value="4" <?php if ($row['po'] == 4) echo 'selected'; ?>>Bem Fakultas</option>
+                    <option value="5" <?php if ($row['po'] == 5) echo 'selected'; ?>>BEM pusat</option>
+                    <option value="4" <?php if ($row['po'] == 4) echo 'selected'; ?>>BEM Fakultas</option>
                     <option value="3" <?php if ($row['po'] == 3) echo 'selected'; ?>>HIMA / DLM Pusat</option>
                     <option value="2" <?php if ($row['po'] == 2) echo 'selected'; ?>>DLM Fakultas</option>
                     <option value="1" <?php if ($row['po'] == 1) echo 'selected'; ?>>tidak ada</option>
                 </select>
             </div>
             <div>
-                <label for="sertif" class="block text-sm font-medium text-gray-700">Sertif</label>
+                <label for="sertif" class="block text-sm font-medium text-gray-700">Sertifikasi terkait jurusan yang di ambil</label>
                 <select id="sertif" name="sertif" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                     <option value="5" <?php if ($row['sertif'] == 5) echo 'selected'; ?>>Memiliki sertifikat profesional/tingkat ahli</option>
                     <option value="3" <?php if ($row['sertif'] == 3) echo 'selected'; ?>>Memiliki beberapa sertifikasi dasar atau satu sertifikasi menengah</option>

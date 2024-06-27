@@ -12,9 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sertif = $_POST['sertif'];
 
     // Konversi IPK ke skala yang sesuai
-    if ($ipk_input >= 3.51) {
+   if ($ipk_input >= 3.51 && $ipk_input <= 4.00) {
         $ipk = 5;
-    } elseif ($ipk_input >= 3.00) {
+    } elseif ($ipk_input >= 3.00 && $ipk_input <= 3.50) {
         $ipk = 3;
     } else {
         $ipk = 1;

@@ -1,18 +1,21 @@
 <?php include 'includes/db.php'; 
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Profile Matching Mahasiswa Berprestasi</title>
+    <title>Memasukan Data Mahasiswa</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
 </head>
-</head>
 <body>
+<?php include 'includes/header.php'; ?>
+
 <div class="max-w-2xl mx-auto ">
-        
+            <h1 class="text-4xl font-bold mb-4">Memasukan Data Mahasiswa</h1>
+
         <form class="space-y-4 bg-white p-6 rounded shadow-md" action="insert.php" method="POST">
             <div>
                 <label for="nama" class="block text-sm font-medium text-gray-700">Nama</label>
@@ -59,8 +62,8 @@
             <div>
                 <label for="po" class="block text-sm font-medium text-gray-700">Pengalaman Organisasi</label>
                 <select id="po" name="po" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
-                    <option value="5">Bem pusat</option>
-                    <option value="4">Bem Fakultas</option>
+                    <option value="5">BEM pusat</option>
+                    <option value="4">BEM Fakultas</option>
                     <option value="3">HIMA / DLM Pusat</option>
                     <option value="2">DLM Fakultas</option>
                     <option value="1">tidak ada</option>

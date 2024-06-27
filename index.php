@@ -10,9 +10,9 @@ $result = $conn->query("SELECT * FROM mahasiswa ORDER BY nt DESC");
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-
-    <h1>Data Mahasiswa</h1>
-    <div class="max-w-4xl mx-auto p-4">
+    <?php include 'includes/header.php'; ?>
+<br>
+    <div class="max-w-4xl mx-auto p-1">
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="p-4 flex justify-between items-center">
@@ -28,11 +28,11 @@ $result = $conn->query("SELECT * FROM mahasiswa ORDER BY nt DESC");
                 </div>
                 <input type="text" id="table-search"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Search for items">
+                    placeholder="Cari Mahasiswa/NIM">
             </div>
             <a href="add.php"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center ml-4">
-                Tambah Data Mahasiswa
+                Masukan Data Mahasiswa
             </a>
         </div>
 
@@ -61,7 +61,7 @@ $result = $conn->query("SELECT * FROM mahasiswa ORDER BY nt DESC");
                         PO
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Sertif
+                        Sertifikasi
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Total Nilai (NT)
@@ -70,11 +70,11 @@ $result = $conn->query("SELECT * FROM mahasiswa ORDER BY nt DESC");
                         Ranking
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Actions
+                        Aksi
                     </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="table-body">
                 <?php $ranking = 1; ?>
                 <?php while ($row = $result->fetch_assoc()) : ?>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -112,7 +112,7 @@ $result = $conn->query("SELECT * FROM mahasiswa ORDER BY nt DESC");
                             <a href="edit.php?id=<?php echo $row['id']; ?>"
                                 class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
                             <a href="delete.php?id=<?php echo $row['id']; ?>"
-                                class="text-red-600 hover:text-red-900">Delete</a>
+                                class="text-red-600 hover:text-red-900">Hapus</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -121,6 +121,37 @@ $result = $conn->query("SELECT * FROM mahasiswa ORDER BY nt DESC");
     </div>
 
     <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
+    <script>
+        const searchInput = document.getElementById('table-search');
+        const tableBody = document.getElementById('table-body');
+        const tableRows = tableBody.getElementsByTagName('tr');
 
+        searchInput.addEventListener('keyup', function() {
+            const filter = searchInput.value.toLowerCase();
+            for (let i = 0; i < tableRows.length; i++) {
+                const row = tableRows[i];
+                const cells = row.getElementsByTagName('td');
+                const nama = cells[0].textContent || cells[0].innerText;
+                const nim = cells[1].textContent || cells[1].innerText;
+                if (nama.toLowerCase().includes(filter) || nim.toLowerCase().includes(filter)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+        });
+    </script>
+    <br>
+
+
+    <div class="info">
+        <p style="font-family: Arial, sans-serif; color: blue; font-size: 12px;">
+            *IPK(Indeks Prestasi Kumulatif)<br>
+            *KTI(Karya Tulis Ilmiah)<br>
+            *BI(Bahasa Inggris)<br>
+            *PO(Pengalaman Organisasi)<br>
+            *Sertifikasi(Sertifikat Terkait Jurusan yang di ambil)<br>
+        </p>
+    </div>
 </body>
 </html>

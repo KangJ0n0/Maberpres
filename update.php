@@ -6,11 +6,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama = $_POST['nama'];
     $nim = $_POST['nim'];
     $kti = $_POST['kti'];
-    $ipk = $_POST['ipk'];
+    $ipk_input = $_POST['ipk'];
     $bi = $_POST['bi'];
     $prestasi = $_POST['prestasi'];
     $po = $_POST['po'];
     $sertif = $_POST['sertif'];
+
+    if ($ipk_input >= 3.51 && $ipk_input <= 4.00) {
+        $ipk = 5;
+    } elseif ($ipk_input >= 3.00 && $ipk_input <= 3.50) {
+        $ipk = 3;
+    } else {
+        $ipk = 1;
+    }
+
 
     // Hitung nilai NT baru
     $nilai_60 = ($kti + $ipk) / 2;
