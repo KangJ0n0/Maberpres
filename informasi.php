@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
     <title>Profile Matching Criteria</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
+<body>
     <?php include 'includes/header.php'; ?>
     <div class="container mx-auto mt-10 p-4 bg-white rounded-lg shadow-md">
         <h1 class="text-2xl font-bold text-center mb-6">Profile Matching Criteria</h1>

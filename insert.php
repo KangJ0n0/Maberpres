@@ -1,4 +1,7 @@
 <?php
+// Start output buffering
+ob_start();
+
 include 'includes/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -12,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sertif = $_POST['sertif'];
 
     // Konversi IPK ke skala yang sesuai
-   if ($ipk_input >= 3.51 && $ipk_input <= 4.00) {
+    if ($ipk_input >= 3.51 && $ipk_input <= 4.00) {
         $ipk = 5;
     } elseif ($ipk_input >= 3.00 && $ipk_input <= 3.50) {
         $ipk = 3;
@@ -20,27 +23,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $ipk = 1;
     }
 
-   // Hitung nilai_60 (rata-rata kti dan ipk)
-   $nilai_60 = ($kti + $ipk) / 2;
+    // Hitung nilai_60 (rata-rata kti dan ipk)
+    $nilai_60 = ($kti + $ipk) / 2;
 
-   // Hitung nilai_40 (rata-rata bi, prestasi, po, sertif)
-   $nilai_40 = ($bi + $prestasi + $po + $sertif) / 4;
+    // Hitung nilai_40 (rata-rata bi, prestasi, po, sertif)
+    $nilai_40 = ($bi + $prestasi + $po + $sertif) / 4;
 
-   // Hitung nilai total (nt)
-   $nt = (0.6 * $nilai_60) + (0.4 * $nilai_40);
-
+    // Hitung nilai total (nt)
+    $nt = (0.6 * $nilai_60) + (0.4 * $nilai_40);
 
     $sql = "INSERT INTO mahasiswa (nama, nim, kti, ipk, bi, prestasi, po, sertif, nt) VALUES ('$nama', '$nim', '$kti', '$ipk', '$bi', '$prestasi', '$po', '$sertif', '$nt')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        // Redirect ke halaman utama setelah data berhasil ditambahkan
+        header("Location: index.php");
+        exit();
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
     $conn->close();
-
-    header("Location: index.php");
-    exit();
 }
+
+// End output buffering and flush the output
+ob_end_flush();
 ?>

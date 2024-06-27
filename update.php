@@ -1,4 +1,7 @@
 <?php
+// Start output buffering
+ob_start();
+
 include 'includes/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -20,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $ipk = 1;
     }
 
-
     // Hitung nilai NT baru
     $nilai_60 = ($kti + $ipk) / 2;
     $nilai_40 = ($bi + $prestasi + $po + $sertif) / 4;
@@ -30,14 +32,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "UPDATE mahasiswa SET nama='$nama', nim='$nim', kti='$kti', ipk='$ipk', bi='$bi', prestasi='$prestasi', po='$po', sertif='$sertif', nt='$nt' WHERE id=$id";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Data updated successfully";
         // Redirect kembali ke halaman utama atau halaman detail data
         header("Location: index.php");
         exit();
     } else {
+        // Output the error message (optional)
         echo "Error updating record: " . $conn->error;
     }
 }
 
 $conn->close();
+
+// End output buffering and flush the output
+ob_end_flush();
 ?>
