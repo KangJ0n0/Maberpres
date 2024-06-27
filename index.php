@@ -145,9 +145,9 @@ $result = $conn->query("SELECT * FROM mahasiswa ORDER BY nt DESC");
 
 
     <div class="info">
-        <p style="font-family: Arial, sans-serif; color: blue; font-size: 12px;">
-            *IPK(Indeks Prestasi Kumulatif)<br>
+        <p style="font-family: Arial, sans-serif; color: blue; font-size: 12px;">         
             *KTI(Karya Tulis Ilmiah)<br>
+            *IPK(Indeks Prestasi Kumulatif)<br>
             *BI(Bahasa Inggris)<br>
             *PO(Pengalaman Organisasi)<br>
             *Sertifikasi(Sertifikat Terkait Jurusan yang di ambil)<br>
