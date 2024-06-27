@@ -20,13 +20,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $ipk = 1;
     }
 
-    // Hitung nilai total (nt)
-    // 60% dari IPK dan KTI(CORE FACTOR)
-    $nilai_60 = 0.6 * (($kti + $ipk) / 2);
-    // 40% dari BI, Prestasi, PO, dan Sertif(SECONDARY FACTOR)
-    $nilai_40 = 0.4 * (($bi + $prestasi + $po + $sertif) / 4);
-    // Total nilai
-    $nt = $nilai_60 + $nilai_40;
+   // Hitung nilai_60 (rata-rata kti dan ipk)
+   $nilai_60 = ($kti + $ipk) / 2;
+
+   // Hitung nilai_40 (rata-rata bi, prestasi, po, sertif)
+   $nilai_40 = ($bi + $prestasi + $po + $sertif) / 4;
+
+   // Hitung nilai total (nt)
+   $nt = (0.6 * $nilai_60) + (0.4 * $nilai_40);
+
 
     $sql = "INSERT INTO mahasiswa (nama, nim, kti, ipk, bi, prestasi, po, sertif, nt) VALUES ('$nama', '$nim', '$kti', '$ipk', '$bi', '$prestasi', '$po', '$sertif', '$nt')";
 
